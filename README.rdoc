@@ -1,0 +1,19 @@
+https://github.com/norman/friendly_id
+
+rails generate friendly_id
+
+rails g scaffold Article name content:text
+
+rails g migration AddSlugToArticle slug:string:uniq
+# dodaję kolumnę 
+
+W modelu article:
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
+
+W controllerze
+
+def set_article
+   @article = Article.friendly.find(params[:id])
+end
